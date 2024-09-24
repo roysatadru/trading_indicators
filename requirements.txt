@@ -1,5 +1,6 @@
 numpy==1.26.4
 pandas==2.2.3
+pandas_ta==0.3.14b0
 python-dateutil==2.9.0.post0
 pytz==2024.2
 setuptools==75.1.0
