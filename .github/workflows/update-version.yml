@@ -1,0 +1,28 @@
+name: Update Version
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
+
+      - name: Update python package version in version.txt
+        run: |
+          echo "${{ steps.date.outputs.date }}.${GITHUB_RUN_NUMBER}" > version.txt
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add version.txt
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update version to $(cat version.txt)" && git push)
