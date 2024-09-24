@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update-version:
     runs-on: ubuntu-latest
@@ -26,3 +30,5 @@ jobs:
           git config --global user.name "GitHub Action"
           git add version.txt
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update version to $(cat version.txt)" && git push)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
