@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from datetime import time
-from trading_hours import trading_hours, Sessions
+from .trading_hours import trading_hours, Sessions
 
 def trading_sessions(gmt_time: pd.Series):
   # Define session times in local time
