@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-def bollinger_bands(close: pd.Series, period=20, std_dev=2, basis: pd.Series = np.nan):
+def bollinger_bands(close: pd.Series, period=20, std_dev=2.0, basis: pd.Series = np.nan):
   if np.isnan(basis):
     basis = close.rolling(window=period).mean()
 
